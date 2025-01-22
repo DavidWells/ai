@@ -103,3 +103,10 @@ Follow AWS Well-Architected Framework principles.
 ### Required Libraries:
 
 ...
+
+## Testing
+
+- npm package `uvu` for unit testing
+- .httpbin files for API testing see https://github.com/Huachao/vscode-restclient?tab=readme-ov-file#usage 
+- React Testing Library for frontend component testing
+- AWS mocks for cloud resource testing

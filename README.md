@@ -73,7 +73,7 @@ Infrastructure as Code must use AWS IAC.CDK with TypeScript and follow these sta
 
 Follow AWS Well-Architected Framework principles.
 
-- Lambda: TypeScript implementation on ARM64 architecture
+- Lambda: Node.js with JSDocs for types implementation on ARM64 architecture
 - Authentication: Cognito with OAuth2 and OIDC support
 - API: API Gateway with Cognito/IAM authentication
 - GraphQL: AppSync with function resolvers, avoid VTL templates
@@ -90,7 +90,9 @@ Follow AWS Well-Architected Framework principles.
 
 ### API Standards:
 
-- Use API gateway
+- Use API gateway REST and HTTP versions where applicable.
+- API endpoints should follow REST best practices
+- API endpoints should follow JSONAPI spec [https://jsonapi.org/](https://jsonapi.org/format/)
 - Maintain consistent error handling
 - Document all schema changes
 
@@ -108,7 +110,18 @@ Follow AWS Well-Architected Framework principles.
 
 ## Testing
 
-- npm package `uvu` for unit testing
-- .httpbin files for API testing see https://github.com/Huachao/vscode-restclient?tab=readme-ov-file#usage 
+- Use the `uvu` npm package for unit testing
+- API testing should using https://github.com/Huachao/vscode-restclient?tab=readme-ov-file#usage where API calls are marked in the docs in codefences marked with http like below:
+
+```http
+POST https://example.com/comments HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+```
+
 - React Testing Library for frontend component testing
-- AWS mocks for cloud resource testing
+- For cloud resource testing, we prefer integration testing against a live stack

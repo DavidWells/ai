@@ -1,3 +1,5 @@
+Ref https://sbstjn.com/blog/ai-code-companion-cursor-rules/
+
 # AI Assistant Instructions
 
 When processing these requirements, the AI assistant must:

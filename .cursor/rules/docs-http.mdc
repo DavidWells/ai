@@ -18,13 +18,32 @@ Follow this process:
     - Read all files located within the `docs/` directory and its subdirectories.
     - Pay close attention to READMEs, guides, architectural documents, and usage instructions.
 
+3.  **Then create the API documentation following the output instructions below. Ensure the Formatting is followed**
+
 **Output:**
 
 The output should follow the spec from https://raw.githubusercontent.com/Huachao/vscode-restclient/refs/heads/master/README.md
 
 See below for instructions on what the `.http` files should look like.
 
+## Formatting
+
 ALWAYS have new blank likes above `\`\`\`http` blocks and Always have a blank line below markdown headers
+
+For example, this output is wrong because `### Get a specific todo` is missing an extra empty line before `GET {{baseUrl}}/todos/1`
+
+```md
+### Get a specific todo
+GET {{baseUrl}}/todos/1
+```
+
+And this example is correct because the new line exists
+
+```md
+### Get a specific todo
+
+GET {{baseUrl}}/todos/1
+```
 
 # HTTP Request File Guide
 

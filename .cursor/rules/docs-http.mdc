@@ -5,7 +5,7 @@ alwaysApply: false
 ---
 # Create .http files to Interact with our API endpoints.
 
-**Your task: Is to take our API endpoints that are listed and create the Requests.md file for us to use in our editor to make those requests via the vscode-restclient extension.**
+**Your task: Is to take our API endpoints that are listed and create the API.md file for us to use in our editor to make requests via the vscode-restclient extension.**
 
 Follow this process:
 
@@ -19,24 +19,27 @@ Follow this process:
     - Pay close attention to READMEs, guides, architectural documents, and usage instructions.
 
 3.  **Then create the API documentation following the output instructions below. Ensure the Formatting is followed**
-    - Make sure to include a name for the request like `# @name getTodo`
-    - Make sure to have an empty line below the `# @name getTodo`
-    - Set variables like shown in `Request Variables` and `Responses` section where it makes sense. Use the variables you set in other requests that are setup.
+    - Follow `# Template` section
+    - Make sure to include a name for the request like `# @name getTodo` inside the `http` code fence
+    - Set variables like shown in the `Template`, `Request Variables` and `Responses` section where it makes sense. Use the variables you set in other requests that are setup. The `@name` is required for variables to work.
+    - Replace `{API Name}` with the services name
 
 **Output:**
 
-See below for instructions on what the `Requests.md` files should look like in `Formatting` and `Template` sections.
+See below for instructions on what the `API.md` files should look like in `Template` sections.
 
-The output should follow the spec `HTTP Request File Guide` and the readme from https://raw.githubusercontent.com/Huachao/vscode-restclient/refs/heads/master/README.md
+For more information on how to setup `http` code fences see the `HTTP Request File Guide` and the readme at https://raw.githubusercontent.com/Huachao/vscode-restclient/refs/heads/master/README.md
+
+---
 
 # Template
 
-Basically follow this template using `http` markdown blocks. Replace `{API Name}` with the services name
+This is the exact template to follow using `http` code fences. 
 
 ````md
 # {API Name}
 
-This is a stub of the endpoints in the service to be used with [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+This is a test file the service to be used with [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for easy manual testing.
 
 ## API settings
 
@@ -98,25 +101,34 @@ DELETE {{baseUrl}}/todos/{{todoId}}
 
 ````
 
+---
+
 # Formatting
 
 ALWAYS have new blank likes above `\`\`\`http` blocks and Always have a blank line below markdown headers
 
 For example, this output is wrong because `### Get a specific todo` is missing an extra empty line before `GET {{baseUrl}}/todos/1`
 
-```md
-### Get a specific todo
-GET {{baseUrl}}/todos/1
+````md
+### Get all todos
+```http
+GET {{baseUrl}}/todos
 ```
+````
 
 And this example is correct because the new line exists
 
-```md
-### Get a specific todo
-# @name getTodo
+````md
+### Get all todos
 
-GET {{baseUrl}}/todos/1
+(optional description if more context can be provided)
+
+```http
+GET {{baseUrl}}/todos
 ```
+````
+
+---
 
 # Responses
 
@@ -144,6 +156,8 @@ PUT {{baseUrl}}/todos/{{todoId}}
 Content-Type: application/json
 
 ```
+
+---
 
 # HTTP Request File Guide
 

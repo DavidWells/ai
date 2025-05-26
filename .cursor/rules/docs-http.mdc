@@ -5,7 +5,7 @@ alwaysApply: false
 ---
 # Create .http files to Interact with our API endpoints.
 
-**Your task: Is to take our API endpoints that are listed and create the .http file for us to use in our editor to make those requests.**
+**Your task: Is to take our API endpoints that are listed and create the Requests.md file for us to use in our editor to make those requests via the vscode-restclient extension.**
 
 Follow this process:
 
@@ -25,11 +25,80 @@ Follow this process:
 
 **Output:**
 
-The output should follow the spec from https://raw.githubusercontent.com/Huachao/vscode-restclient/refs/heads/master/README.md
+See below for instructions on what the `Requests.md` files should look like in `Formatting` and `Template` sections.
 
-See below for instructions on what the `.http` files should look like.
+The output should follow the spec `HTTP Request File Guide` and the readme from https://raw.githubusercontent.com/Huachao/vscode-restclient/refs/heads/master/README.md
 
-## Formatting
+# Template
+
+Basically follow this template using `http` markdown blocks. Replace `{API Name}` with the services name
+
+````md
+# {API Name}
+
+This is a stub of the endpoints in the service to be used with [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+## API settings
+
+```
+@localUrl = http://localhost:3000/dev
+@remoteUrl = https://6npslmcmid.execute-api.us-east-1.amazonaws.com/dev
+@baseUrl = {{remoteUrl}}
+```
+
+### Create a new todo
+
+```http
+# @name createTodo
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+  "title": "123 title",
+  "description": "This post is awesome"
+}
+```
+
+Set `todoId` for other requests.
+
+```
+@todoId = {{createTodo.response.body.$.id}}
+```
+
+### Get all todos
+
+```http
+GET {{baseUrl}}/todos
+```
+
+### Get a specific todo
+
+```http
+GET {{baseUrl}}/todos/{{todoId}}
+```
+
+### Update a todo
+
+```http
+# @name updateTodo
+PUT {{baseUrl}}/todos/{{todoId}}
+Content-Type: application/json
+
+{
+  "title": "nice",
+  "description": "Updated description"
+}
+```
+
+### Delete a todo
+
+```http
+DELETE {{baseUrl}}/todos/{{todoId}}
+```
+
+````
+
+# Formatting
 
 ALWAYS have new blank likes above `\`\`\`http` blocks and Always have a blank line below markdown headers
 
@@ -47,6 +116,33 @@ And this example is correct because the new line exists
 # @name getTodo
 
 GET {{baseUrl}}/todos/1
+```
+
+# Responses
+
+The values returned can set variables used in other calls like in the example below where `todoId` is set and then used in the `Update the created todo` request below
+
+```
+### Create a new todo
+# @name createTodo
+
+```http
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+  "title": "Learn Serverless",
+  "description": "Build a serverless API with AWS Lambda"
+}
+
+### Get the created todo using its ID
+@todoId = {{createTodo.response.body.$.id}}
+
+### Update the created todo
+
+PUT {{baseUrl}}/todos/{{todoId}}
+Content-Type: application/json
+
 ```
 
 # HTTP Request File Guide
@@ -250,28 +346,3 @@ Content-Type: application/xml
 - Use `Ctrl+Alt+R` (Windows/Linux) or `Cmd+Alt+R` (macOS)
 - Right-click and select "Send Request"
 - Press `F1` and type "Rest Client: Send Request"
-
-# Responses
-
-The values returned can set variables used in other calls like in the example below where `todoId` is set and then used in the `Update the created todo` request below
-
-```
-### Create a new todo
-# @name createTodo
-POST {{baseUrl}}/todos
-Content-Type: application/json
-
-{
-  "title": "Learn Serverless",
-  "description": "Build a serverless API with AWS Lambda"
-}
-
-### Get the created todo using its ID
-@todoId = {{createTodo.response.body.$.id}}
-
-### Update the created todo
-
-PUT {{baseUrl}}/todos/{{todoId}}
-Content-Type: application/json
-
-```

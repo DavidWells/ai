@@ -19,6 +19,9 @@ Follow this process:
     - Pay close attention to READMEs, guides, architectural documents, and usage instructions.
 
 3.  **Then create the API documentation following the output instructions below. Ensure the Formatting is followed**
+    - Make sure to include a name for the request like `# @name getTodo`
+    - Make sure to have an empty line below the `# @name getTodo`
+    - Set variables like shown in `Request Variables` and `Responses` section where it makes sense. Use the variables you set in other requests that are setup.
 
 **Output:**
 
@@ -41,6 +44,7 @@ And this example is correct because the new line exists
 
 ```md
 ### Get a specific todo
+# @name getTodo
 
 GET {{baseUrl}}/todos/1
 ```
@@ -246,3 +250,28 @@ Content-Type: application/xml
 - Use `Ctrl+Alt+R` (Windows/Linux) or `Cmd+Alt+R` (macOS)
 - Right-click and select "Send Request"
 - Press `F1` and type "Rest Client: Send Request"
+
+# Responses
+
+The values returned can set variables used in other calls like in the example below where `todoId` is set and then used in the `Update the created todo` request below
+
+```
+### Create a new todo
+# @name createTodo
+POST {{baseUrl}}/todos
+Content-Type: application/json
+
+{
+  "title": "Learn Serverless",
+  "description": "Build a serverless API with AWS Lambda"
+}
+
+### Get the created todo using its ID
+@todoId = {{createTodo.response.body.$.id}}
+
+### Update the created todo
+
+PUT {{baseUrl}}/todos/{{todoId}}
+Content-Type: application/json
+
+```

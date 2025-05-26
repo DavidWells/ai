@@ -39,15 +39,22 @@ This is the exact template to follow using `http` code fences.
 ````md
 # {API Name}
 
-This is a test file the service to be used with [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for easy manual testing.
+Below are a list of callable endpoints for easy manual testing. You must have [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) installed in VSCode, Windsurf or Cursor.
 
 ## API settings
 
-```
+These are variables used in the requests below.
+
+```ini
 @localUrl = http://localhost:3000/dev
-@remoteUrl = https://6npslmcmid.execute-api.us-east-1.amazonaws.com/dev
+@remoteUrl = https://xyz.execute-api.us-east-1.amazonaws.com/dev
+# Swap out the base URL for local/remote dev
 @baseUrl = {{remoteUrl}}
 ```
+
+## API Requests
+
+Here are the callable endpoints
 
 ### Create a new todo
 
@@ -57,7 +64,7 @@ POST {{baseUrl}}/todos
 Content-Type: application/json
 
 {
-  "title": "123 title",
+  "title": "heyyyy title",
   "description": "This post is awesome"
 }
 ```
@@ -88,7 +95,7 @@ PUT {{baseUrl}}/todos/{{todoId}}
 Content-Type: application/json
 
 {
-  "title": "nice",
+  "title": "hey title updatedddddddd",
   "description": "Updated description"
 }
 ```
@@ -97,34 +104,6 @@ Content-Type: application/json
 
 ```http
 DELETE {{baseUrl}}/todos/{{todoId}}
-```
-
-````
-
----
-
-# Formatting
-
-ALWAYS have new blank likes above `\`\`\`http` blocks and Always have a blank line below markdown headers
-
-For example, this output is wrong because `### Get a specific todo` is missing an extra empty line before `GET {{baseUrl}}/todos/1`
-
-````md
-### Get all todos
-```http
-GET {{baseUrl}}/todos
-```
-````
-
-And this example is correct because the new line exists
-
-````md
-### Get all todos
-
-(optional description if more context can be provided)
-
-```http
-GET {{baseUrl}}/todos
 ```
 ````
 
